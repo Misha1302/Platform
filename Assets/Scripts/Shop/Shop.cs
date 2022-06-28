@@ -38,7 +38,7 @@ public class Shop : MonoBehaviour
             {
                 if (PlayerPrefs.GetInt("Item" + index1) == 1)
                 {
-                    PlatformTexture.textureIndex = index1;
+                    //SkinChanger.textureIndex = index1;
                     foreach (var showTexture in showTextures) showTexture.SetTexture(index1);
                 }
                 else
@@ -70,7 +70,7 @@ public class Shop : MonoBehaviour
             locks[index].SetActive(false);
         }
 
-        PlatformTexture.textureIndex = index;
+        //SkinChanger.textureIndex = index;
         SettingsData.setTextureIndex = index;
     }
 }

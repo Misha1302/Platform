@@ -12,7 +12,7 @@ public class SceneLoader : MonoBehaviour
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
         try
         {
-            SceneManager.sceneLoaded += FindObjectOfType<PlatformTexture>().OnSceneLoaded;
+            //SceneManager.sceneLoaded += FindObjectOfType<SkinChanger>().OnSceneLoaded;
         }
         catch
         {

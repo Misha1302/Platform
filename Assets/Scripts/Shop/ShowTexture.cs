@@ -10,7 +10,7 @@ public class ShowTexture : MonoBehaviour
     private void Start()
     {
         _image = GetComponent<RawImage>();
-        SetTexture(PlatformTexture.textureIndex);
+        //SetTexture(SkinChanger.textureIndex);
     }
 
     public void SetTexture(int index)
