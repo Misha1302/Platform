@@ -18,7 +18,7 @@ public class Coins : MonoBehaviour
 
     private void Start()
     {
-        switch (SettingsData.setTextureIndex)
+        switch (SettingsData.SetTextureIndex)
         {
             case 3:
                 maxAddCoins++;
@@ -38,7 +38,7 @@ public class Coins : MonoBehaviour
         while (!stop && Time.timeScale > 0)
         {
             yield return new WaitForSeconds(
-                Random.Range(minTimeSpawn, maxTimeSpawn - SettingsData.mode * 0.5f));
+                Random.Range(minTimeSpawn, maxTimeSpawn - SettingsData.Mode * 0.5f));
 
             var coin = randomCoins[Random.Range(0, randomCoins.Length)];
             var spawnVector = randomSpawnPoints[Random.Range(0, randomSpawnPoints.Length)].position;
@@ -52,10 +52,7 @@ public class Coins : MonoBehaviour
     private IEnumerator AddMoney()
     {
         yield return new WaitForSeconds(1);
-        // if mode - 0 (Easy), max = maxAddCoins            (3)
-        // if mode - 1 (Normal), max = maxAddCoins + 1      (4)
-        // if mode - 2 (Hard), max = maxAddCoins + 3        (6)
-        Money.AddMoney(Random.Range(minAddCoins, maxAddCoins + Mathf.RoundToInt(SettingsData.mode * 1.4f)));
+        Money.AddMoney(Random.Range(minAddCoins, maxAddCoins + Mathf.RoundToInt(SettingsData.Mode * 1.4f)));
         money.moneyText.text = Money.Coins.ToString();
     }
 }

@@ -10,21 +10,21 @@ public class Menu : MonoBehaviour
     private void Awake()
     {
         Screen.orientation = ScreenOrientation.LandscapeLeft;
-        SettingsData.coins = PlayerPrefs.GetInt("Coins");
-        moneyText.text = $"Coins: {SettingsData.coins}";
+        SettingsData.Coins = PlayerPrefs.GetInt("Coins");
+        moneyText.text = $"Coins: {SettingsData.Coins}";
         ResetMode();
     }
 
     public void ResetMode()
     {
-        SettingsData.mode = dropdownMode.value;
+        SettingsData.Mode = dropdownMode.value;
     }
 
     public void ShowMsgBox()
     {
         msgBox.SetActive(true);
     }
-    
+
     public void ImSure()
     {
         PlayerPrefs.DeleteAll();

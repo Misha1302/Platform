@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 public class BuyMsg : MonoBehaviour
 {
@@ -7,16 +6,15 @@ public class BuyMsg : MonoBehaviour
     [SerializeField] private Shop shop;
 
     private int _index;
-    
+
     private void Awake()
     {
         shop ??= FindObjectOfType<Shop>();
     }
 
-    public UnityAction SetIndex(int index)
+    public void SetIndex(int index)
     {
         _index = index;
-        return null;
     }
 
     public void ShowMsgBox()
@@ -24,7 +22,7 @@ public class BuyMsg : MonoBehaviour
         msgBox.SetActive(true);
     }
 
-    public void HideMsgBox()
+    private void HideMsgBox()
     {
         msgBox.SetActive(false);
     }

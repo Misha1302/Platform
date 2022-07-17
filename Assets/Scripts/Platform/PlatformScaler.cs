@@ -5,11 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(Platform))]
 public class PlatformScaler : MonoBehaviour
 {
-    private const float DEPTH_DEFAULT = 0.3f;
-
     private Platform _platform;
-    private IReadOnlyList<PlatformSizeScalePare> _sizes = new List<PlatformSizeScalePare>();
     private float _platformDepth;
+    private IReadOnlyList<PlatformSizeScalePare> _sizes = new List<PlatformSizeScalePare>();
 
     private void Awake()
     {
@@ -17,7 +15,7 @@ public class PlatformScaler : MonoBehaviour
         _platform.PlatformResize += OnPlatformResized;
     }
 
-    public void Setup(IReadOnlyList<PlatformSizeScalePare> sizes, float platformDepth = DEPTH_DEFAULT)
+    public void Setup(IReadOnlyList<PlatformSizeScalePare> sizes, float platformDepth)
     {
         _sizes = sizes;
         _platformDepth = platformDepth;
@@ -32,6 +30,6 @@ public class PlatformScaler : MonoBehaviour
         if (sizeQueryResult.Any())
             scale = sizeQueryResult.First().Scale;
 
-        transform.localScale = new(scale, _platformDepth, scale);
+        transform.localScale = new Vector3(scale, _platformDepth, scale);
     }
 }

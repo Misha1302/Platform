@@ -8,10 +8,10 @@ public class Lose : MonoBehaviour
     private static readonly int Open = Animator.StringToHash("Open");
 
     [SerializeField] private Animator losePanel;
-    [SerializeField] private TMP_Text coinsText;
+    [SerializeField] private TMP_Text earnedCoinsText;
     [SerializeField] private TMP_Text maxCoinsText;
     [SerializeField] private AdsController adsController;
-    
+
     private int _amountCoinsBefore;
 
     private void OnEnable()
@@ -28,16 +28,15 @@ public class Lose : MonoBehaviour
 
         _stop = true;
 
-        var coins = SettingsData.coins;
+        var coins = SettingsData.Coins;
         if (coins > PlayerPrefs.GetInt("MaxCoins")) PlayerPrefs.SetInt("MaxCoins", coins);
         Money.SaveMoney();
 
         losePanel.SetTrigger(Open);
-        coinsText.text = $"Earned: {Money.Coins - _amountCoinsBefore}";
+        earnedCoinsText.text = $"Earned: {Money.Coins - _amountCoinsBefore}";
         maxCoinsText.text = "Max coins: " + PlayerPrefs.GetInt("MaxCoins");
 
         if (Random.Range(1, 4) == 1) adsController.ShowAd();
-        //_adsController.ShowAd();
         StartCoroutine(StopTime());
     }
 

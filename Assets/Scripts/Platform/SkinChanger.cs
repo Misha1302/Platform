@@ -9,12 +9,12 @@ public class SkinChanger : MonoBehaviour
     private void Awake()
     {
         _platform = GetComponent<Platform>();
-        _platform.SkinApply += SkinApplyed;
+        _platform.SkinApply += SkinApplied;
 
         _renderer = GetComponent<Renderer>();
     }
 
-    private void SkinApplyed(Texture texture)
+    private void SkinApplied(Texture texture)
     {
         _renderer.material.mainTexture = texture;
     }

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11dd9584d04d1384eae9170a7b14455a, type: 3}
   m_Name: Settings
   m_EditorClassIdentifier: 
-  _platformDepth: 0.3
-  _platformSizes:
+  platformDepth: 0.5
+  platformSizes:
   - _size: 2
-    _scale: 2
-  - _size: 1
     _scale: 3
+  - _size: 1
+    _scale: 3.5
   - _size: 0
-    _scale: 5
+    _scale: 4

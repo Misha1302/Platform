@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class PlatformRotate : MonoBehaviour
 {
-    public int mode;
+    [HideInInspector] public int mode;
+
     [SerializeField] private Vector3 rotateVectorFactor;
     [SerializeField] private Accelerometer accelerometer;
     [SerializeField] private int maxRotateX = 60;
@@ -13,7 +14,7 @@ public class PlatformRotate : MonoBehaviour
 
     private void Awake()
     {
-        mode = SettingsData.mode;
+        mode = SettingsData.Mode;
         Screen.orientation = ScreenOrientation.LandscapeLeft;
     }
 
@@ -21,15 +22,11 @@ public class PlatformRotate : MonoBehaviour
     {
         _transform = transform;
 
-        switch (SettingsData.setTextureIndex)
+        _ = SettingsData.SetTextureIndex switch
         {
-            case 2:
-                rotateVectorFactor *= 0.75f;
-                break;
-            case 4:
-                rotateVectorFactor *= 0.5f;
-                break;
-        }
+            2 => rotateVectorFactor *= 0.75f,
+            4 => rotateVectorFactor *= 0.5f
+        };
     }
 
     private void Update()

@@ -10,14 +10,6 @@ public class SceneLoader : MonoBehaviour
     private void Awake()
     {
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
-        try
-        {
-            //SceneManager.sceneLoaded += FindObjectOfType<SkinChanger>().OnSceneLoaded;
-        }
-        catch
-        {
-            // ignored
-        }
     }
 
     public void Reload()

@@ -7,9 +7,8 @@ public class Scroll : MonoBehaviour
     private bool _waiting;
 
     public Vector2 ScrollValue { get; private set; }
-    public Vector2 StartPosition { get; private set; }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (isAndroid)
         {
@@ -21,7 +20,7 @@ public class Scroll : MonoBehaviour
         }
     }
 
-    private IEnumerator OnDragging(float waitTime = 0.10f)
+    private IEnumerator OnDragging(float waitTime = 0.1f)
     {
         if (isAndroid)
         {
@@ -30,7 +29,6 @@ public class Scroll : MonoBehaviour
             yield return new WaitForSecondsRealtime(waitTime);
             _waiting = false;
             ScrollValue = Input.touchCount > 0 ? Input.touches[0].position - startTouchPosition : Vector2.zero;
-            StartPosition = startTouchPosition;
         }
         else
         {
@@ -41,7 +39,8 @@ public class Scroll : MonoBehaviour
             ScrollValue = Input.GetMouseButton(0)
                 ? new Vector2(Input.mousePosition.x, Input.mousePosition.y) - startTouchPosition
                 : Vector2.zero;
-            StartPosition = startTouchPosition;
         }
+
+        ScrollValue *= Time.deltaTime;
     }
 }

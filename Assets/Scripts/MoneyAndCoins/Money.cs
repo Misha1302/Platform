@@ -8,27 +8,26 @@ public class Money : MonoBehaviour
 
     private void Awake()
     {
-        //PlayerPrefs.SetInt("Coins", 10000);
-        SettingsData.coins = PlayerPrefs.GetInt("Coins");
-        Coins = SettingsData.coins;
-        moneyText.text = SettingsData.coins.ToString();
+        SettingsData.Coins = PlayerPrefs.GetInt("Coins");
+        Coins = SettingsData.Coins;
+        moneyText.text = SettingsData.Coins.ToString();
     }
 
     public static void SaveMoney()
     {
-        PlayerPrefs.SetInt("Coins", SettingsData.coins);
-        Coins = SettingsData.coins;
+        PlayerPrefs.SetInt("Coins", SettingsData.Coins);
+        Coins = SettingsData.Coins;
     }
 
     public static void AddMoney(int addMoney)
     {
-        SettingsData.coins += addMoney;
+        SettingsData.Coins += addMoney;
         SaveMoney();
     }
 
     public static void ReduceMoney(int reduceMoney)
     {
-        SettingsData.coins -= reduceMoney;
+        SettingsData.Coins -= reduceMoney;
         SaveMoney();
     }
 }

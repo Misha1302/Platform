@@ -883,13 +883,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba00a81d1f3eee4d8a3d59c6c41d4d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textureMaterials:
-  - {fileID: 2800000, guid: 895dff02ea516bb4dae189e34e8d7ab4, type: 3}
-  - {fileID: 2800000, guid: c0741d1791f0d5b4fb79dea03a3256dc, type: 3}
-  - {fileID: 2800000, guid: 84cac6af2087e5a428ed31717f3e7ea3, type: 3}
-  - {fileID: 2800000, guid: 69571c502cf8e7247b037b51ec15a6e9, type: 3}
-  - {fileID: 2800000, guid: f6135d1a0615fb2418c70dfc1d25df30, type: 3}
-  - {fileID: 2800000, guid: 22bdad7fcff4c1a47a2cdd52a6789bd0, type: 3}
 --- !u!4 &311239853
 Transform:
   m_ObjectHideFlags: 0
@@ -1597,7 +1590,6 @@ MonoBehaviour:
   shop: {fileID: 2079558300}
   maxX: 0
   minX: -200
-  scrollEverywhere: 1
 --- !u!114 &1032640543
 MonoBehaviour:
   m_ObjectHideFlags: 0
