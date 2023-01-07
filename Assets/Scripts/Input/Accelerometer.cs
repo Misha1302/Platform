@@ -1,27 +1,30 @@
 using UnityEngine;
 
-public class Accelerometer : MonoBehaviour
+namespace Input
 {
-    public Vector3 AccelerometerVector3 { get; private set; }
-    public Quaternion AccelerometerQuaternion => Quaternion.Euler(AccelerometerVector3);
-
-    private void Awake()
+    public class Accelerometer : MonoBehaviour
     {
-        AccelerometerVector3 = Vector3.zero;
-    }
+        public Vector3 AccelerometerVector3 { get; private set; }
+        public Quaternion AccelerometerQuaternion => Quaternion.Euler(AccelerometerVector3);
 
-    // Update is called once per frame
-    private void Update()
-    {
-        var dir = Vector3.zero;
-        dir.x = -Input.acceleration.y;
-        dir.z = Input.acceleration.x;
+        private void Awake()
+        {
+            AccelerometerVector3 = Vector3.zero;
+        }
 
-        if (dir.sqrMagnitude > 1)
-            dir.Normalize();
+        // Update is called once per frame
+        private void Update()
+        {
+            var dir = Vector3.zero;
+            dir.x = -UnityEngine.Input.acceleration.y;
+            dir.z = UnityEngine.Input.acceleration.x;
 
-        dir *= Time.deltaTime;
+            if (dir.sqrMagnitude > 1)
+                dir.Normalize();
 
-        AccelerometerVector3 = dir;
+            dir *= Time.deltaTime;
+
+            AccelerometerVector3 = dir;
+        }
     }
 }

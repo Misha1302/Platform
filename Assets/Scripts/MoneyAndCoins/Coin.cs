@@ -1,18 +1,23 @@
 using UnityEngine;
 
-public class Coin : MonoBehaviour
+namespace MoneyAndCoins
 {
-    [SerializeField] private Rigidbody rigidbodyCoin;
-    [SerializeField] private AudioSource audioSource;
-
-    private void Start()
+    public class Coin : MonoBehaviour
     {
-        rigidbodyCoin.sleepThreshold = 0f;
-    }
+        [SerializeField] private Rigidbody rigidbodyCoin;
 
-    private void OnCollisionEnter()
-    {
-        Destroy(GetComponent<AudioSource>());
-        Destroy(this);
+        private void Start()
+        {
+            rigidbodyCoin.sleepThreshold = 0f;
+            rigidbodyCoin.interpolation = RigidbodyInterpolation.Interpolate;
+            rigidbodyCoin.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+            Physics.defaultMaxDepenetrationVelocity = 50f;
+        }
+
+        private void OnCollisionEnter()
+        {
+            Destroy(GetComponent<AudioSource>());
+            Destroy(this);
+        }
     }
 }

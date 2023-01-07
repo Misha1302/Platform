@@ -1,34 +1,38 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class Money : MonoBehaviour
+namespace MoneyAndCoins
 {
-    public TMP_Text moneyText;
-    public static int Coins { get; private set; }
-
-    private void Awake()
+    public class Money : MonoBehaviour
     {
-        //PlayerPrefs.SetInt("Coins", 10000);
-        SettingsData.coins = PlayerPrefs.GetInt("Coins");
-        Coins = SettingsData.coins;
-        moneyText.text = SettingsData.coins.ToString();
-    }
+        [FormerlySerializedAs("moneyText")] public TMP_Text MoneyText;
+        public static int Coins { get; private set; }
 
-    public static void SaveMoney()
-    {
-        PlayerPrefs.SetInt("Coins", SettingsData.coins);
-        Coins = SettingsData.coins;
-    }
+        private void Awake()
+        {
+            //PlayerPrefs.SetInt("Coins", 10000);
+            SettingsData.Coins = PlayerPrefs.GetInt("Coins");
+            Coins = SettingsData.Coins;
+            MoneyText.text = SettingsData.Coins.ToString();
+        }
 
-    public static void AddMoney(int addMoney)
-    {
-        SettingsData.coins += addMoney;
-        SaveMoney();
-    }
+        public static void SaveMoney()
+        {
+            PlayerPrefs.SetInt("Coins", SettingsData.Coins);
+            Coins = SettingsData.Coins;
+        }
 
-    public static void ReduceMoney(int reduceMoney)
-    {
-        SettingsData.coins -= reduceMoney;
-        SaveMoney();
+        public static void AddMoney(int addMoney)
+        {
+            SettingsData.Coins += addMoney;
+            SaveMoney();
+        }
+
+        public static void ReduceMoney(int reduceMoney)
+        {
+            SettingsData.Coins -= reduceMoney;
+            SaveMoney();
+        }
     }
 }

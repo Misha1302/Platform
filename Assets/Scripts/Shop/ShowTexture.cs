@@ -1,20 +1,24 @@
+using Platform;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShowTexture : MonoBehaviour
+namespace Shop
 {
-    [SerializeField] private Texture[] textures;
-
-    private RawImage _image;
-
-    private void Start()
+    public class ShowTexture : MonoBehaviour
     {
-        _image = GetComponent<RawImage>();
-        SetTexture(PlatformTexture.textureIndex);
-    }
+        [SerializeField] private Texture[] textures;
 
-    public void SetTexture(int index)
-    {
-        if (PlayerPrefs.GetInt("Item" + index) == 1) _image.texture = textures[index];
+        private RawImage image;
+
+        private void Start()
+        {
+            image = GetComponent<RawImage>();
+            SetTexture(PlatformTexture.TextureIndex);
+        }
+
+        public void SetTexture(int index)
+        {
+            if (PlayerPrefs.GetInt("Item" + index) == 1) image.texture = textures[index];
+        }
     }
 }

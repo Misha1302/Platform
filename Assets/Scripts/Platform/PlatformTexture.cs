@@ -1,28 +1,31 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlatformTexture : MonoBehaviour
+namespace Platform
 {
-    [SerializeField] private Texture[] textureMaterials;
-    public static int textureIndex;
-
-    private void Awake()
+    public class PlatformTexture : MonoBehaviour
     {
-        DontDestroyOnLoad(gameObject);
-        if (FindObjectsOfType<PlatformTexture>().Length > 1) Destroy(gameObject);
-    }
+        [SerializeField] private Texture[] textureMaterials;
+        public static int TextureIndex;
 
-    private void TrySetTexture()
-    {
-        ScriptsHelper.TryOrSkip(() =>
+        private void Awake()
         {
-            var platform = FindObjectOfType<PlatformRotate>().GetComponent<Renderer>().material;
-            platform.mainTexture = textureMaterials[textureIndex];
-        });
-    }
+            DontDestroyOnLoad(gameObject);
+            if (FindObjectsOfType<PlatformTexture>().Length > 1) Destroy(gameObject);
+        }
 
-    public void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
-    {
-        TrySetTexture();
+        private void TrySetTexture()
+        {
+            ScriptsHelper.TryOrSkip(() =>
+                                    {
+                                        var platform = FindObjectOfType<PlatformRotate>().GetComponent<Renderer>().material;
+                                        platform.mainTexture = textureMaterials[TextureIndex];
+                                    });
+        }
+
+        public void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+        {
+            TrySetTexture();
+        }
     }
 }

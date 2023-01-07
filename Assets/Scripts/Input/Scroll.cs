@@ -1,47 +1,50 @@
 using System.Collections;
 using UnityEngine;
 
-public class Scroll : MonoBehaviour
+namespace Input
 {
-    [SerializeField] private bool isAndroid;
-    private bool _waiting;
-
-    public Vector2 ScrollValue { get; private set; }
-    public Vector2 StartPosition { get; private set; }
-
-    private void FixedUpdate()
+    public class Scroll : MonoBehaviour
     {
-        if (isAndroid)
-        {
-            if (!_waiting && Input.touchCount > 0) StartCoroutine(OnDragging());
-        }
-        else
-        {
-            if (!_waiting && Input.GetMouseButton(0)) StartCoroutine(OnDragging());
-        }
-    }
+        [SerializeField] private bool isAndroid;
+        private bool waiting;
 
-    private IEnumerator OnDragging(float waitTime = 0.10f)
-    {
-        if (isAndroid)
+        public Vector2 ScrollValue { get; private set; }
+        public Vector2 StartPosition { get; private set; }
+
+        private void FixedUpdate()
         {
-            var startTouchPosition = Input.touches[0].position;
-            _waiting = true;
-            yield return new WaitForSecondsRealtime(waitTime);
-            _waiting = false;
-            ScrollValue = Input.touchCount > 0 ? Input.touches[0].position - startTouchPosition : Vector2.zero;
-            StartPosition = startTouchPosition;
+            if (isAndroid)
+            {
+                if (!waiting && UnityEngine.Input.touchCount > 0) StartCoroutine(OnDragging());
+            }
+            else
+            {
+                if (!waiting && UnityEngine.Input.GetMouseButton(0)) StartCoroutine(OnDragging());
+            }
         }
-        else
+
+        private IEnumerator OnDragging(float waitTime = 0.10f)
         {
-            var startTouchPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-            _waiting = true;
-            yield return new WaitForSecondsRealtime(waitTime);
-            _waiting = false;
-            ScrollValue = Input.GetMouseButton(0)
-                ? new Vector2(Input.mousePosition.x, Input.mousePosition.y) - startTouchPosition
-                : Vector2.zero;
-            StartPosition = startTouchPosition;
+            if (isAndroid)
+            {
+                var startTouchPosition = UnityEngine.Input.touches[0].position;
+                waiting = true;
+                yield return new WaitForSecondsRealtime(waitTime);
+                waiting = false;
+                ScrollValue = UnityEngine.Input.touchCount > 0 ? UnityEngine.Input.touches[0].position - startTouchPosition : Vector2.zero;
+                StartPosition = startTouchPosition;
+            }
+            else
+            {
+                var startTouchPosition = new Vector2(UnityEngine.Input.mousePosition.x, UnityEngine.Input.mousePosition.y);
+                waiting = true;
+                yield return new WaitForSecondsRealtime(waitTime);
+                waiting = false;
+                ScrollValue = UnityEngine.Input.GetMouseButton(0)
+                    ? new Vector2(UnityEngine.Input.mousePosition.x, UnityEngine.Input.mousePosition.y) - startTouchPosition
+                    : Vector2.zero;
+                StartPosition = startTouchPosition;
+            }
         }
     }
 }

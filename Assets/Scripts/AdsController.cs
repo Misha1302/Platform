@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Advertisements;
@@ -28,5 +29,10 @@ public class AdsController : MonoBehaviour
     public void ShowAd(int adID = 1)
     {
         Advertisement.Show(adID == 1 ? missVideo : fullVideo);
+    }
+
+    private void OnDestroy()
+    {
+        Advertisement.Banner.Hide();
     }
 }

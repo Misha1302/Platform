@@ -1,24 +1,25 @@
 using System.Collections;
+using MoneyAndCoins;
 using TMPro;
 using UnityEngine;
 
 public class Lose : MonoBehaviour
 {
     private static bool _stop;
-    private static readonly int Open = Animator.StringToHash("Open");
+    private static readonly int _open = Animator.StringToHash("Open");
 
     [SerializeField] private Animator losePanel;
     [SerializeField] private TMP_Text coinsText;
     [SerializeField] private TMP_Text maxCoinsText;
     [SerializeField] private AdsController adsController;
     
-    private int _amountCoinsBefore;
+    private int amountCoinsBefore;
 
     private void OnEnable()
     {
         Time.timeScale = 1;
         _stop = false;
-        _amountCoinsBefore = Money.Coins;
+        amountCoinsBefore = Money.Coins;
         adsController ??= FindObjectOfType<AdsController>();
     }
 
@@ -28,12 +29,12 @@ public class Lose : MonoBehaviour
 
         _stop = true;
 
-        var coins = SettingsData.coins;
+        var coins = SettingsData.Coins;
         if (coins > PlayerPrefs.GetInt("MaxCoins")) PlayerPrefs.SetInt("MaxCoins", coins);
         Money.SaveMoney();
 
-        losePanel.SetTrigger(Open);
-        coinsText.text = $"Earned: {Money.Coins - _amountCoinsBefore}";
+        losePanel.SetTrigger(_open);
+        coinsText.text = $"Earned: {Money.Coins - amountCoinsBefore}";
         maxCoinsText.text = "Max coins: " + PlayerPrefs.GetInt("MaxCoins");
 
         if (Random.Range(1, 4) == 1) adsController.ShowAd();

@@ -1,17 +1,20 @@
 using UnityEngine;
 
-public class PlatformScale : MonoBehaviour
+namespace Platform
 {
-    [SerializeField] private float scale = 1;
-
-    private void Start()
+    public class PlatformScale : MonoBehaviour
     {
-        var mode = SettingsData.mode;
-        scale = mode == 0 ? 1.2f : 1;
+        [SerializeField] private float scale = 1;
 
-        var thisTransform = transform;
-        var localScale = thisTransform.localScale;
-        localScale = new Vector3(localScale.x * scale, 0.5f, localScale.z * scale);
-        thisTransform.localScale = localScale;
+        private void Start()
+        {
+            var mode = SettingsData.Mode;
+            scale = mode == 0 ? 1.2f : 1;
+
+            var thisTransform = transform;
+            var localScale = thisTransform.localScale;
+            localScale = new Vector3(localScale.x * scale, 0.5f, localScale.z * scale);
+            thisTransform.localScale = localScale;
+        }
     }
 }

@@ -3,15 +3,15 @@ using UnityEngine;
 public class CameraRotate : MonoBehaviour
 {
     [SerializeField] private Vector3 rotateVector;
-    private Transform _camera;
+    private Transform camera;
 
     private void Start()
     {
-        _camera = Camera.main.transform;
+        camera = Camera.main.transform;
     }
 
     private void Update()
     {
-        _camera.Rotate(rotateVector * Time.deltaTime);
+        camera.Rotate(rotateVector * Time.deltaTime);
     }
 }
